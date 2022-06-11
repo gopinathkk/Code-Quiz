@@ -1,0 +1,55 @@
+
+
+.indexheader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+}
+.container1{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center;
+}
+.container2{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: flex-start;
+}
+.answers{
+    display:flex;
+    flex-direction: column;
+    }
+.label-ans{
+    background-color: indigo;
+    color: aliceblue;
+    font-size: 25px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    
+}
+.button1{
+    background-color:indigo ;
+    padding: 15px;
+    color: aliceblue;
+    border-radius: 4px;
+    font-size: 18px;
+
+}
+.button2{
+   background-color: indigo; 
+   color: aliceblue;
+   border-radius: 4px;
+}
+
+.button3{
+    color: indigo;
+    border: none;
+    background: none;
+}

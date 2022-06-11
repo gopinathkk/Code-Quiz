@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="indexheader">
+       
+        <div>
+         <button class="button3" id="viewHighScore"> View high scores</button>
+        </div>
+           <div><label for="time" id="timer">Time:0</label></div>
+    
+    </header>
+    <div class="container1" id="startDiv">
+        <h1>Coding Quiz Challenge</h1>
+        <p>Try to answer the following code-realted questions within the time limit.
+            <br>
+            Keep in mind that incorrect answers will penalize your score/time by ten seconds! 
+         </p>
+
+         <div>
+           <button class="button1" id="startBtn">Start Quiz</button>
+        
+        </div>
+    </div>
+    <div class="container2" id="questionDiv">
+        <h2 id="question">Questions will appear here. You can choose an answer from below given four options</h2>
+        <div class="answers">
+            <label for="answer1" class="label-ans" id="answer1"> first and correct option1</label>
+            <label for="answer2" class="label-ans" id="answer2"> option2</label>
+            <label for="answer3" class="label-ans" id="answer3"> option3</label>
+            <label for="answer4" class="label-ans" id="answer4"> option4</label>
+        </div>
+        <br>
+        <hr size="1" width="100%" color="black">
+
+        <div><label for="result" id="result"></label></div>
+    </div>
+
+    
+    <div class="container2" id="resultDiv">
+        <h2>All done</h2>
+        <div><label for="finalscore" id="finalScore">Your Final score is : 50</label></div>
+        <br>
+        <form action="name-entry">
+            <label for="initials" id="initials">Enter initials: <input type="text"><button type="submit" class="button2" id="submitInitials">Submit</button></label>
+    
+        </form>
+    </div > 
+
+    
+    <div class="container2" id="highScoreDiv">
+        <h2>High Scores</h2>
+        <div class="userList">
+            <ol id="initialsList">
+
+            </ol>
+        </div> -->
+        <div class="goback">
+          <button id="goBack" class="button2">Go Back</button>
+            <button id="clearList" class="button2"> Clear High Scores</button>
+
+        </div>
+    </div>
+
+
+
+    
+    
+   <script src="app.js"></script>
+</body>
+</html>
