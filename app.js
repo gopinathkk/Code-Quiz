@@ -34,6 +34,7 @@ startButton.addEventListener("click", function (event) {
   start = true;
   score = 0;  
   if (start === true) {
+    gameStartBeep()
     startButton.disabled = true;
     createList();
   }
@@ -125,6 +126,7 @@ function timeincrement() {
   timerIndication.innerHTML = "Time: " + time;
   startButton.innerHTML = "Quiz running";
   if (time <= 0) {
+    gameOverBeep()
     start = false;
     clearInterval(timer);
     time = 60;
@@ -158,10 +160,12 @@ function answerSelection() {
     answerE1.addEventListener("click", function (event) {
       event.stopImmediatePropagation();
       if (answerE1.innerHTML == questionList[index].solution) {
+        correctAnsBeep();
         result.innerHTML = "Correct!";
         score = score + 5;
         questionSelect();
       } else {
+        wrongAnsBeep();
         result.innerHTML = "Wrong!";
         time = time-10;
         if(time<0){time=0};
@@ -172,10 +176,12 @@ function answerSelection() {
     answerE2.addEventListener("click", function (event) {
       event.stopImmediatePropagation();
       if (answerE2.innerHTML == questionList[index].solution) {
+        correctAnsBeep();
         result.innerHTML = "Correct!";
         score = score + 5;
         questionSelect();
       } else {
+        wrongAnsBeep();
         result.innerHTML = "Wrong!";
         time = time-10;
         if(time<0){time=0};
@@ -186,10 +192,12 @@ function answerSelection() {
     answerE3.addEventListener("click", function (event) {
       event.stopImmediatePropagation();
       if (answerE3.innerHTML == questionList[index].solution) {
+        correctAnsBeep();
         result.innerHTML = "Correct!";
         score = score + 5;
         questionSelect();
       } else {
+        wrongAnsBeep();
         result.innerHTML = "Wrong!";
         time = time-10;
         if(time<0){time=0};
@@ -200,10 +208,12 @@ function answerSelection() {
     answerE4.addEventListener("click", function (event) {
       event.stopImmediatePropagation();
       if (answerE4.innerHTML == questionList[index].solution) {
+        correctAnsBeep();
         result.innerHTML = "Correct!";
         score = score + 5;
         questionSelect();
       } else {
+        wrongAnsBeep();
         result.innerHTML = "Wrong!";
         time = time-10;
         if(time<0){time=0};
@@ -213,6 +223,22 @@ function answerSelection() {
   } else {
     return;
   }
+}
+function correctAnsBeep() {
+  var sound = new Audio('correct-answer.wav');
+  sound.play();
+}
+function wrongAnsBeep() {
+  var sound = new Audio('wrong-answer.wav');
+  sound.play();
+}
+function gameOverBeep() {
+  var sound = new Audio('game-over.wav');
+  sound.play();
+}
+function gameStartBeep() {
+  var sound = new Audio('laser-swoosh.wav');
+  sound.play();
 }
 var questionList = [
   {
