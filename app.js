@@ -1,7 +1,7 @@
 
 var start = false;
 var timer = 0;
-var time = 10;
+var time = 60;
 var score = 0;
 var index;
 var storedList = [];
@@ -32,8 +32,7 @@ var startButton = document.querySelector("#startBtn");
 startButton.addEventListener("click", function (event) {
   event.stopImmediatePropagation();
   start = true;
-  score = 0;
-  index=0;
+  score = 0;  
   if (start === true) {
     startButton.disabled = true;
     createList();
@@ -117,17 +116,18 @@ function setTimer() {
     }, 1000);
   } else {
     clearInterval(timer);
-    time = 10;
+    time = 60;
   }
 }
 function timeincrement() {
   time = time - 1;
+  if(time<0){time=0};
   timerIndication.innerHTML = "Time: " + time;
   startButton.innerHTML = "Quiz running";
   if (time <= 0) {
     start = false;
     clearInterval(timer);
-    time = 10;
+    time = 60;
     result.innerHTML = "";
     startButton.innerHTML = "Start Quiz";
     startButton.disabled = false;
@@ -140,6 +140,7 @@ function timeincrement() {
 }
 
 function questionSelect() {
+  
   index = Math.floor(Math.random() * questionList.length);
   console.log(index);
   var question = questionList[index];
@@ -149,6 +150,7 @@ function questionSelect() {
   answerE2.innerHTML = question.ans2;
   answerE3.innerHTML = question.ans3;
   answerE4.innerHTML = question.ans4;
+
 }
 
 function answerSelection() {
@@ -161,6 +163,8 @@ function answerSelection() {
         questionSelect();
       } else {
         result.innerHTML = "Wrong!";
+        time = time-10;
+        if(time<0){time=0};
         questionSelect();
       }
     });
@@ -173,6 +177,8 @@ function answerSelection() {
         questionSelect();
       } else {
         result.innerHTML = "Wrong!";
+        time = time-10;
+        if(time<0){time=0};
         questionSelect();
       }
     });
@@ -185,6 +191,8 @@ function answerSelection() {
         questionSelect();
       } else {
         result.innerHTML = "Wrong!";
+        time = time-10;
+        if(time<0){time=0};
         questionSelect();
       }
     });
@@ -197,6 +205,8 @@ function answerSelection() {
         questionSelect();
       } else {
         result.innerHTML = "Wrong!";
+        time = time-10;
+        if(time<0){time=0};
         questionSelect();
       }
     });
