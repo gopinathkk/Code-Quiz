@@ -1,4 +1,7 @@
-
+body{
+    margin: 0%;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 .indexheader{
     display: flex;
@@ -26,7 +29,7 @@
     flex-direction: column;
     }
 .label-ans{
-    background-color: indigo;
+    background-color: #3a0ca3;
     color: aliceblue;
     font-size: 25px;
     margin: 10px;
@@ -34,22 +37,54 @@
     border-radius: 3px;
     
 }
+.label-ans:active{
+    background-color: blueviolet;
+}
+.label-ans:hover{
+    box-shadow: 0px 0px 20px 0px blueviolet;
+}
 .button1{
-    background-color:indigo ;
+    background-color:#3a0ca3 ;
     padding: 15px;
     color: aliceblue;
     border-radius: 4px;
     font-size: 18px;
 
 }
+.button1:active{
+    background-color: blueviolet;
+}
 .button2{
-   background-color: indigo; 
+   background-color: #3a0ca3; 
    color: aliceblue;
    border-radius: 4px;
+   font-size: large;
+}
+.button2:active{
+    background-color: blueviolet;
 }
 
 .button3{
     color: indigo;
     border: none;
     background: none;
+    font-size: large;
+}
+.button3:active{
+    background-color: rgba(137, 43, 226, 0.301); 
+}
+
+#timer{
+    font-size: x-large;
+    margin: 10px 20px;
+}
+
+ #initialsList{
+    align-items: left;
+    
+} 
+#result{
+    font-size: x-large;
+    font-style: italic;
+    color: gray 0.3;
 }

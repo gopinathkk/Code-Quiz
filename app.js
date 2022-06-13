@@ -53,6 +53,7 @@ submitInitials.addEventListener("click", function (event) {
   if (initialsTextEntry.value.length > 0) {
     var x = { Name: initialsTextEntry.value, marks: score };
     storedList.push(x);
+    storedList.sort(function(a,b){return b.marks - a.marks;});
     localStorage.setItem("storedList", JSON.stringify(storedList));
     createList();
     initialsTextEntry.value = "";
@@ -74,6 +75,7 @@ function createList() {
       for (i = 0; i < listArray.length; i++) {
         var li1 = document.createElement("li");
         li1.textContent = listArray[i].Name + "-" + listArray[i].marks;
+        li1.style="font-size: medium;background-color: rgba(85, 107, 47, 0.363);width: 195px;text-align: left; padding:5px; margin:5px"
         initialsList.appendChild(li1);
       }
     }
@@ -154,11 +156,11 @@ function answerSelection() {
     answerE1.addEventListener("click", function (event) {
       event.stopImmediatePropagation();
       if (answerE1.innerHTML == questionList[index].solution) {
-        result.innerHTML = "Answer is correct";
+        result.innerHTML = "Correct!";
         score = score + 5;
         questionSelect();
       } else {
-        result.innerHTML = "Answer is wrong";
+        result.innerHTML = "Wrong!";
         questionSelect();
       }
     });
@@ -166,11 +168,11 @@ function answerSelection() {
     answerE2.addEventListener("click", function (event) {
       event.stopImmediatePropagation();
       if (answerE2.innerHTML == questionList[index].solution) {
-        result.innerHTML = "Answer is correct";
+        result.innerHTML = "Correct!";
         score = score + 5;
         questionSelect();
       } else {
-        result.innerHTML = "Answer is wrong";
+        result.innerHTML = "Wrong!";
         questionSelect();
       }
     });
@@ -178,11 +180,11 @@ function answerSelection() {
     answerE3.addEventListener("click", function (event) {
       event.stopImmediatePropagation();
       if (answerE3.innerHTML == questionList[index].solution) {
-        result.innerHTML = "Answer is correct";
+        result.innerHTML = "Correct!";
         score = score + 5;
         questionSelect();
       } else {
-        result.innerHTML = "Answer is wrong";
+        result.innerHTML = "Wrong!";
         questionSelect();
       }
     });
@@ -190,11 +192,11 @@ function answerSelection() {
     answerE4.addEventListener("click", function (event) {
       event.stopImmediatePropagation();
       if (answerE4.innerHTML == questionList[index].solution) {
-        result.innerHTML = "Answer is correct";
+        result.innerHTML = "Correct!";
         score = score + 5;
         questionSelect();
       } else {
-        result.innerHTML = "Answer is wrong";
+        result.innerHTML = "Wrong!";
         questionSelect();
       }
     });
