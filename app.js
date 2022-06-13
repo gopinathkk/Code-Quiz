@@ -86,7 +86,9 @@ var questionList = [
 var start = false;
 var timer = 0;
 var time = 10;
+var score = 0;
 var index;
+var storedList = [];
 var questionE1 = document.querySelector("#question");
 var answerE1 = document.querySelector("#answer1");
 var answerE2 = document.querySelector("#answer2");
@@ -98,10 +100,13 @@ var startDiv = document.querySelector("#startDiv");
 var questionDiv = document.querySelector("#questionDiv");
 var resultDiv = document.querySelector("#resultDiv");
 var highScoreDiv = document.querySelector("#highScoreDiv");
-var submitInitials = document.querySelector("#submitInitials")
-var goBack=document.querySelector("#goBack")
-var clearList=document.querySelector("#clearList")
-var viewHighScore= document.querySelector("#viewHighScore")
+var submitInitials = document.querySelector("#submitInitials");
+var goBack = document.querySelector("#goBack");
+var clearList = document.querySelector("#clearList");
+var viewHighScore = document.querySelector("#viewHighScore");
+var finalScore = document.querySelector("#finalScore");
+var initialsList = document.querySelector("#initialsList");
+var initialsTextEntry = document.querySelector("#initialsTextEntry");
 
 questionDiv.setAttribute("style", "display:none");
 resultDiv.setAttribute("style", "display:none");
@@ -110,9 +115,12 @@ highScoreDiv.setAttribute("style", "display:none");
 var startButton = document.querySelector("#startBtn");
 startButton.addEventListener("click", function () {
   start = true;
-    if (start === true) {
+  score = 0;
+  if (start === true) {
     startButton.disabled = true;
+    createList();
   }
+  // initialsList=localStorage.getItem("initialsList")
   questionSelect();
   setTimer();
   answerSelection();
@@ -122,33 +130,63 @@ startButton.addEventListener("click", function () {
   highScoreDiv.setAttribute("style", "display:none");
 });
 
-submitInitials.addEventListener("click", function(event){
-    event.preventDefault();
-    questionDiv.setAttribute("style", "display:none");
-    startDiv.setAttribute("style", "display:none");
-    resultDiv.setAttribute("style", "display:none");
-    highScoreDiv.setAttribute("style", "display:flex");  
-})
-goBack.addEventListener("click", function(){
-    if(start==true){
+submitInitials.addEventListener("click", function (event) {
+  event.preventDefault();
+  if (initialsTextEntry != null) {
+    var x = { Name: initialsTextEntry.value, marks: score };
+    storedList.push(x);
+    localStorage.setItem("storedList", JSON.stringify(storedList));
+    createList();
+    initialsTextEntry.value = "";
+  }
+
+  score = 0;
+  questionDiv.setAttribute("style", "display:none");
+  startDiv.setAttribute("style", "display:none");
+  resultDiv.setAttribute("style", "display:none");
+  highScoreDiv.setAttribute("style", "display:flex");
+});
+
+function createList() {
+  if (localStorage.getItem("storedList") != null) {
+    var listArray = JSON.parse(localStorage.getItem("storedList"));
+
+    if (listArray != null) {
+      initialsList.innerHTML = "";
+      for (i = 0; i < listArray.length; i++) {
+        var li1 = document.createElement("li");
+        li1.textContent = listArray[i].Name + "-" + listArray[i].marks;
+        initialsList.appendChild(li1);
+      }
+    }
+  }
+}
+
+goBack.addEventListener("click", function () {
+  if (start == true) {
     questionDiv.setAttribute("style", "display:flex");
     startDiv.setAttribute("style", "display:none");
     resultDiv.setAttribute("style", "display:none");
-    highScoreDiv.setAttribute("style", "display:none"); 
-}
-else{
+    highScoreDiv.setAttribute("style", "display:none");
+  } else {
     questionDiv.setAttribute("style", "display:none");
     startDiv.setAttribute("style", "display:flex");
     resultDiv.setAttribute("style", "display:none");
-    highScoreDiv.setAttribute("style", "display:none"); 
-} 
-})
-viewHighScore.addEventListener("click", function(){
-    questionDiv.setAttribute("style", "display:none");
-    startDiv.setAttribute("style", "display:none");
-    resultDiv.setAttribute("style", "display:none");
-    highScoreDiv.setAttribute("style", "display:flex");  
-})
+    highScoreDiv.setAttribute("style", "display:none");
+  }
+});
+viewHighScore.addEventListener("click", function () {
+  createList();
+  questionDiv.setAttribute("style", "display:none");
+  startDiv.setAttribute("style", "display:none");
+  resultDiv.setAttribute("style", "display:none");
+  highScoreDiv.setAttribute("style", "display:flex");
+});
+clearList.addEventListener("click", function () {
+  initialsList.innerHTML = "";
+  storedList = [];
+  localStorage.removeItem("storedList");
+});
 
 function setTimer() {
   if (start == true) {
@@ -171,6 +209,7 @@ function timeincrement() {
     result.innerHTML = "";
     startButton.innerHTML = "Start Quiz";
     startButton.disabled = false;
+    finalScore.innerHTML = "Your final score is : " + score;
     questionDiv.setAttribute("style", "display:none");
     startDiv.setAttribute("style", "display:none");
     resultDiv.setAttribute("style", "display:flex");
@@ -195,6 +234,7 @@ function answerSelection() {
     answerE1.addEventListener("click", function () {
       if (answerE1.innerHTML == questionList[index].solution) {
         result.innerHTML = "Answer is correct";
+        score = score + 5;
         questionSelect();
       } else {
         result.innerHTML = "Answer is wrong";
@@ -205,6 +245,7 @@ function answerSelection() {
     answerE2.addEventListener("click", function () {
       if (answerE2.innerHTML == questionList[index].solution) {
         result.innerHTML = "Answer is correct";
+        score = score + 5;
         questionSelect();
       } else {
         result.innerHTML = "Answer is wrong";
@@ -215,6 +256,7 @@ function answerSelection() {
     answerE3.addEventListener("click", function () {
       if (answerE3.innerHTML == questionList[index].solution) {
         result.innerHTML = "Answer is correct";
+        score = score + 5;
         questionSelect();
       } else {
         result.innerHTML = "Answer is wrong";
@@ -225,6 +267,7 @@ function answerSelection() {
     answerE4.addEventListener("click", function () {
       if (answerE4.innerHTML == questionList[index].solution) {
         result.innerHTML = "Answer is correct";
+        score = score + 5;
         questionSelect();
       } else {
         result.innerHTML = "Answer is wrong";
