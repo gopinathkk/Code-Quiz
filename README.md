@@ -41,7 +41,7 @@ To install this code, download the zip file, or use GitHub's guidelines to clone
 
 
 ### This project has the following features: 
-* A start buttons
+    * A start buttons
     * This will open a screen with multiple choice questions
     * Quiz time will be 60 seconds
     * User can choose the answers by clicking the labels
@@ -89,27 +89,27 @@ To install this code, download the zip file, or use GitHub's guidelines to clone
 * Variable declaration area and Web APIs
 * Event listeners 
 * Start button clicked:
-- a start variable switched ON
-- a timer starts
-- a function is called to select the questions randomly from a list of questions 
-- an array of objects used for storing questions
-- a function starts to check if the user selected answer is correct
+   - a start variable switched ON
+   - a timer starts
+   - a function is called to select the questions randomly from a list of questions 
+   - an array of objects used for storing questions
+   - a function starts to check if the user selected answer is correct
 * When the user clicks an answer:
-- a function checks the answer
-- if the answer is correct, five points added to score
-- if the answer is wrong, 10 seconds deducted from timer
-- next question presented to user
-- this sequence continue till the time ends
+   - a function checks the answer
+   - if the answer is correct, five points added to score
+   - if the answer is wrong, 10 seconds deducted from timer
+   - next question presented to user
+   - this sequence continue till the time ends
 * When the time ends:
-- the start variable switched off.
-- final score will be displayed
-- a test entry input box with submit button is presented
-- if the user enters his initials, score send initials will be saved to local     storage using an array.
-- if no initials entered, user scores will not be stored
+   - the start variable switched off.
+   - final score will be displayed
+   - a test entry input box with submit button is presented
+   - if the user enters his initials, score send initials will be saved to local     storage using an array.
+   - if no initials entered, user scores will not be stored
 * When the user press submits:
-- the list of user entries is presented
-- when "go back" button pressed, the main page with start button will be presented.
-- when the "reset high score" button pressed the high score list will be deleted
+   - the list of user entries is presented
+   - when "go back" button pressed, the main page with start button will be presented.
+   - when the "reset high score" button pressed the high score list will be deleted
 * The user can view high score anytime during or after the quiz period.
 
 
@@ -120,8 +120,8 @@ To install this code, download the zip file, or use GitHub's guidelines to clone
 ### Features: 
 One HTML Pages
     * index.html 
-        * Contains basic user input items and buttons with divs and ids
-        * Contains four sections- acts as four different screens
+        - Contains basic user input items and buttons with divs and ids
+        - Contains four sections- acts as four different screens
 * One CSS Page
     * styles.css
         * Contains cantering and styling for html user input features
@@ -129,17 +129,17 @@ One HTML Pages
         
 * One Javascript Page
     *app.js
-        * Contains: 
-        * Variables, including arrays and value placeholders
-        * Event listeners
-        * if/else if statements
-        * Function to select questions from an array of objects
-        * Functions to verify answers
-        * Function to set timer
-        * Function to countdown timer
-        * Function to create an ordered list of initials and scores
-        * Functions to play an alert sound
-        * An array of objects to store the questions
+        - Contains: 
+        - Variables, including arrays and value placeholders
+        - Event listeners
+        - if/else if statements
+        - Function to select questions from an array of objects
+        - Functions to verify answers
+        - Function to set timer
+        - Function to countdown timer
+        - Function to create an ordered list of initials and scores
+        - Functions to play an alert sound
+        - An array of objects to store the questions
 
 
 
