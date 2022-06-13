@@ -1,87 +1,3 @@
-var questionList = [
-  {
-    quest: "Commonly used data types do not include",
-    ans1: "Strings",
-    ans2: "Boolean",
-    ans3: "floats",
-    ans4: "digits",
-    solution: "digits",
-  },
-  {
-    quest: "Inside which HTML element do we put the JavaScript?",
-    ans1: "<script>",
-    ans2: "<javascript>",
-    ans3: "<js>",
-    ans4: "<scripting>",
-    solution: "<script>",
-  },
-  {
-    quest:
-      'What is the correct syntax for referring to an external script called "xxx.js?"',
-    ans1: '<script name="xxx.js>"',
-    ans2: '<sript href="xxx.js>"',
-    ans3: '<script src="xxx.js>"',
-    ans4: '<script="xxx.js>"',
-    solution: '<script src="xxx.js>"',
-  },
-  {
-    quest: 'How do you write "Hello World" in an alertbox?',
-    ans1: 'msgBox("Hello World)"',
-    ans2: 'alert("Hellow World")',
-    ans3: 'alertBox("Hello World")',
-    ans4: 'msg("Hello World")',
-    solution: 'alert("Hellow World")',
-  },
-  {
-    quest: "How do you create a function in JavaScript?",
-    ans1: "function:myFunction()",
-    ans2: "function myFunction()",
-    ans3: "function=myFunction()",
-    ans4: "function=myFunction()",
-    solution: "function myFunction()",
-  },
-  {
-    quest: 'How do you call a function named "myFunction"?',
-    ans1: "myFunction()",
-    ans2: "call myFunction()",
-    ans3: "call function myFunction()",
-    ans4: "function=myFuncton()",
-    solution: "myFunction()",
-  },
-  {
-    quest: "How to write an IF statement in JavaScript?",
-    ans1: "if(i==5)",
-    ans2: "if i==5",
-    ans3: "if i==5 then",
-    ans4: "if i=5 then",
-    solution: "if(i==5)",
-  },
-  {
-    quest:
-      'How to write an IF statement for executing some code if "i" is NOT equal to 5?',
-    ans1: "if(i <> 5)",
-    ans2: "if i <> 5",
-    ans3: "if i =! 5 then",
-    ans4: "if(i != 5)",
-    solution: "if(i != 5)",
-  },
-  {
-    quest: "How does a WHILE loop start?",
-    ans1: "while(i<=10,i++)",
-    ans2: "while i=1 to 10",
-    ans3: "while(i<=10)",
-    ans4: "while(i=10)",
-    solution: "while(i<=10)",
-  },
-  {
-    quest: "How does a FOR loop start?",
-    ans1: "for i=1 to 5",
-    ans2: "for (i=0;i<=5)",
-    ans3: "for(i=0;i<5;i++)",
-    ans4: "for(i<=5;i++",
-    solution: "for(i=0;i<5;i++)",
-  },
-];
 
 var start = false;
 var timer = 0;
@@ -113,14 +29,15 @@ resultDiv.setAttribute("style", "display:none");
 highScoreDiv.setAttribute("style", "display:none");
 
 var startButton = document.querySelector("#startBtn");
-startButton.addEventListener("click", function () {
+startButton.addEventListener("click", function (event) {
+  event.stopImmediatePropagation();
   start = true;
   score = 0;
+  index=0;
   if (start === true) {
     startButton.disabled = true;
     createList();
   }
-  // initialsList=localStorage.getItem("initialsList")
   questionSelect();
   setTimer();
   answerSelection();
@@ -132,7 +49,8 @@ startButton.addEventListener("click", function () {
 
 submitInitials.addEventListener("click", function (event) {
   event.preventDefault();
-  if (initialsTextEntry != null) {
+  
+  if (initialsTextEntry.value.length > 0) {
     var x = { Name: initialsTextEntry.value, marks: score };
     storedList.push(x);
     localStorage.setItem("storedList", JSON.stringify(storedList));
@@ -169,6 +87,8 @@ goBack.addEventListener("click", function () {
     resultDiv.setAttribute("style", "display:none");
     highScoreDiv.setAttribute("style", "display:none");
   } else {
+    score=0;
+    index=0;
     questionDiv.setAttribute("style", "display:none");
     startDiv.setAttribute("style", "display:flex");
     resultDiv.setAttribute("style", "display:none");
@@ -231,7 +151,8 @@ function questionSelect() {
 
 function answerSelection() {
   if (start === true) {
-    answerE1.addEventListener("click", function () {
+    answerE1.addEventListener("click", function (event) {
+      event.stopImmediatePropagation();
       if (answerE1.innerHTML == questionList[index].solution) {
         result.innerHTML = "Answer is correct";
         score = score + 5;
@@ -242,7 +163,8 @@ function answerSelection() {
       }
     });
 
-    answerE2.addEventListener("click", function () {
+    answerE2.addEventListener("click", function (event) {
+      event.stopImmediatePropagation();
       if (answerE2.innerHTML == questionList[index].solution) {
         result.innerHTML = "Answer is correct";
         score = score + 5;
@@ -253,7 +175,8 @@ function answerSelection() {
       }
     });
 
-    answerE3.addEventListener("click", function () {
+    answerE3.addEventListener("click", function (event) {
+      event.stopImmediatePropagation();
       if (answerE3.innerHTML == questionList[index].solution) {
         result.innerHTML = "Answer is correct";
         score = score + 5;
@@ -264,7 +187,8 @@ function answerSelection() {
       }
     });
 
-    answerE4.addEventListener("click", function () {
+    answerE4.addEventListener("click", function (event) {
+      event.stopImmediatePropagation();
       if (answerE4.innerHTML == questionList[index].solution) {
         result.innerHTML = "Answer is correct";
         score = score + 5;
@@ -278,3 +202,153 @@ function answerSelection() {
     return;
   }
 }
+var questionList = [
+  {
+    quest: "Commonly used data types do not include",
+    ans1: "Strings",
+    ans2: "Boolean",
+    ans3: "floats",
+    ans4: "digits",
+    solution: "digits",
+  },
+  
+   {
+    quest: 'How do you write "Hello World" in an alertbox?',
+    ans1: 'msgBox("Hello World)"',
+    ans2: 'alert("Hellow World")',
+    ans3: 'alertBox("Hello World")',
+    ans4: 'msg("Hello World")',
+    solution: 'alert("Hellow World")',
+  },
+  {
+    quest: "How do you create a function in JavaScript?",
+    ans1: "function:myFunction()",
+    ans2: "function myFunction()",
+    ans3: "function=myFunction()",
+    ans4: "function=myFunction()",
+    solution: "function myFunction()",
+  },
+  {
+    quest: 'How do you call a function named "myFunction"?',
+    ans1: "myFunction()",
+    ans2: "call myFunction()",
+    ans3: "call function myFunction()",
+    ans4: "function=myFuncton()",
+    solution: "myFunction()",
+  },
+  {
+    quest: "How to write an IF statement in JavaScript?",
+    ans1: "if(i==5)",
+    ans2: "if i==5",
+    ans3: "if i==5 then",
+    ans4: "if i=5 then",
+    solution: "if(i==5)",
+  },
+  {
+    quest:
+      'How to write an IF statement for executing some code if "i" is NOT equal to 5?',
+    ans1: "if(i <> 5)",
+    ans2: "if i <> 5",
+    ans3: "if i =! 5 then",
+    ans4: "if(i != 5)",
+    solution: "if(i != 5)",
+  },
+  {
+    quest: "How does a WHILE loop start?",
+    ans1: "while(i<=10,i++)",
+    ans2: "while i=1 to 10",
+    ans3: "while(i<=10)",
+    ans4: "while(i=10)",
+    solution: "while(i<=10)",
+  },
+  
+  {
+    quest: "What does HTML stand for?",
+    ans1: "Hyperlinks and Text Markup Language",
+    ans2: "Home Tool Markup Language",
+    ans3: "Hyper Test Markup Language",
+    ans4: "High Text Making Language",
+    solution: "Hyper Test Markup Language",
+  },
+  {
+    quest: "Who is making the Web standards?",
+    ans1: "Mozilla",
+    ans2: "google",
+    ans3: "The World Wide Web Consortium",
+    ans4: "Microsoft",
+    solution: "The World Wide Web Consortium",
+  },
+  {
+    quest: "Choose the correct HTML element for the largest heading:",
+    ans1: "head",
+    ans2: "h6",
+    ans3: "heading",
+    ans4: "h1",
+    solution: "h1",
+  },
+  {
+    quest: "How can you add a comment in a JavaScript?",
+    ans1: ",--this is a comment-->",
+    ans2: "'this is a comment",
+    ans3: "/this is a comment",
+    ans4: "//this is a comment",
+    solution: "//this is a comment",
+  },
+  
+  {
+    quest: "How do you round the number 7.25, to the nearest integer?",
+    ans1: "round(7.25)",
+    ans2: "Math.round(7.25)",
+    ans3: "rnd(7.25)",
+    ans4: "Math.rnd(7.25)",
+    solution: "Math.round(7.25)",
+  },
+  {
+    quest: "How do you find the number with the highest value of x and y?",
+    ans1: "ceil(x,y)",
+    ans2: "Math.ceil(x,y)",
+    ans3: "top(x,y)",
+    ans4: "Math.max(x,y)",
+    solution: "Math.max(x,y)",
+  },
+  {
+    quest: "How can you detect the client's browser name?",
+    ans1: "client.navName",
+    ans2: "navigator.appName",
+    ans3: "browser.name",
+    ans4: "url.name",
+    solution: "navigator.appName",
+  },
+  {
+    quest: "Which event occurs when the user clicks on an HTML element?",
+    ans1: "onmouseclick",
+    ans2: "onclick",
+    ans3: "onmouseover",
+    ans4: "onchange",
+    solution: "onclick",
+  },
+  {
+    quest: "How do you declare a JavaScript variable?",
+    ans1: "var carName",
+    ans2: "variable carName",
+    ans3: "v carName",
+    ans4: "v=carName",
+    solution: "var carName",
+  },
+  {
+    quest: "Which operator is used to assign a value to a variable?",
+    ans1: "x",
+    ans2: "=",
+    ans3: ":",
+    ans4: "==",
+    solution: "=",
+  },
+  {
+    quest: "What will the following code return: Boolean(10 > 9)",
+    ans1: "true",
+    ans2: "false",
+    ans3: "null",
+    ans4: "NaN",
+    solution: "true",
+  },
+];
