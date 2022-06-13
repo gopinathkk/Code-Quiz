@@ -1,77 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Quiz</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./Assets/css/style.css">
 </head>
+<!-- the body is divided into four sections, function wise -->
+<!-- display property of the sections are controlling from JavaScript  -->
+
+
 <body>
     <header class="indexheader">
-       
+
         <div>
-         <button class="button3" id="viewHighScore"> View high scores</button>
+            <button class="button3" id="viewHighScore"> View high scores</button>
         </div>
-           <div><label for="time" id="timer">Time:0</label></div>
-    
+        <div><label for="time" id="timer">Time:0</label></div>
+
     </header>
-    <div class="container1" id="startDiv">
-        <h1>Coding Quiz Challenge</h1>
-        <p>Try to answer the following code-realted questions within the time limit.
+    <!-- this section is the main display, visible at the start of the quiz-->
+    <section>
+        <div class="container1" id="startDiv">
+            <h1>Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-realted questions within the time limit.
+                <br>
+                Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+            </p>
+
+            <div>
+                <button class="button1" id="startBtn">Start Quiz</button>
+
+            </div>
+        </div>
+    </section>
+    <!-- this section will display the quiz questions while the quiz is running -->
+    <section>
+        <div class="container2" id="questionDiv">
+            <h2 id="question">Questions will appear here. You can choose an answer from below given four options</h2>
+            <div class="answers">
+                <label for="answer1" class="label-ans" id="answer1"> first and correct option1</label>
+                <label for="answer2" class="label-ans" id="answer2"> option2</label>
+                <label for="answer3" class="label-ans" id="answer3"> option3</label>
+                <label for="answer4" class="label-ans" id="answer4"> option4</label>
+            </div>
             <br>
-            Keep in mind that incorrect answers will penalize your score/time by ten seconds! 
-         </p>
+            <hr size="1" width="100%" color="black">
 
-         <div>
-           <button class="button1" id="startBtn">Start Quiz</button>
-        
+            <div><label for="result" id="result"></label></div>
         </div>
-    </div>
-    <div class="container2" id="questionDiv">
-        <h2 id="question">Questions will appear here. You can choose an answer from below given four options</h2>
-        <div class="answers">
-            <label for="answer1" class="label-ans" id="answer1"> first and correct option1</label>
-            <label for="answer2" class="label-ans" id="answer2"> option2</label>
-            <label for="answer3" class="label-ans" id="answer3"> option3</label>
-            <label for="answer4" class="label-ans" id="answer4"> option4</label>
+    </section>
+    <!-- this section will display the score. Also a text input for entering the initials of the user -->
+    <section>
+        <div class="container2" id="resultDiv">
+            <h2>All done</h2>
+            <div><label for="finalscore" id="finalScore"></label></div>
+            <br>
+            <form action="name-entry">
+                <label for="initials" id="initials">Enter initials: <input type="text" id="initialsTextEntry"><button
+                        type="submit" class="button2" id="submitInitials">Submit</button></label>
+
+            </form>
         </div>
-        <br>
-        <hr size="1" width="100%" color="black">
+    </section>
+    <!-- this section will display the high scores and initials as an ordered list. Also contains a button to clear the list. the go back button will switch the screen to start section -->
+    <section>
+        <div class="container2" id="highScoreDiv">
+            <h2>High Scores</h2>
+            <div class="userList">
+                <ol id="initialsList">
 
-        <div><label for="result" id="result"></label></div>
-    </div>
+                </ol>
+            </div>
+            <div class="goback">
+                <button id="goBack" class="button2">Go Back</button>
+                <button id="clearList" class="button2"> Clear High Scores</button>
 
-    
-    <div class="container2" id="resultDiv">
-        <h2>All done</h2>
-        <div><label for="finalscore" id="finalScore"></label></div>
-        <br>
-        <form action="name-entry">
-            <label for="initials" id="initials">Enter initials: <input type="text" id="initialsTextEntry"><button type="submit" class="button2" id="submitInitials">Submit</button></label>
-    
-        </form>
-    </div > 
-
-    
-    <div class="container2" id="highScoreDiv">
-        <h2>High Scores</h2>
-        <div class="userList">
-            <ol id="initialsList">
-
-            </ol>
-        </div> 
-        <div class="goback">
-          <button id="goBack" class="button2">Go Back</button>
-            <button id="clearList" class="button2"> Clear High Scores</button>
-
+            </div>
         </div>
-    </div>
+    </section>
 
 
 
-    
-    
-   <script src="app.js"></script>
+    <script src="./Assets/js/app.js"></script>
 </body>
+
 </html>

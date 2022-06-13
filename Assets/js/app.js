@@ -1,3 +1,5 @@
+//HTML section is divided to four sections start, question, result and high score. Each div visibility is controlled using JavaScript
+//Initialise all DOM elements
 
 var start = false;
 var timer = 0;
@@ -24,17 +26,25 @@ var finalScore = document.querySelector("#finalScore");
 var initialsList = document.querySelector("#initialsList");
 var initialsTextEntry = document.querySelector("#initialsTextEntry");
 
+// Only start button section of the HTML will be visible at the beginning. All others are hidden.
+startDiv.setAttribute("style", "display:flex");
 questionDiv.setAttribute("style", "display:none");
 resultDiv.setAttribute("style", "display:none");
 highScoreDiv.setAttribute("style", "display:none");
+
+//when the start button clicked.
+//variable "start" set to true.
+//sound a beep and the screen switch to the question section by changing the display settings.
+//three functions for the timer, selection of questions & checking the answer selections are called.
+//when the user repeating the game, the name and initials of previous games will be displayed as an ordered list using "createList" function.
 
 var startButton = document.querySelector("#startBtn");
 startButton.addEventListener("click", function (event) {
   event.stopImmediatePropagation();
   start = true;
-  score = 0;  
+  score = 0;
   if (start === true) {
-    gameStartBeep()
+    gameStartBeep();
     startButton.disabled = true;
     createList();
   }
@@ -47,13 +57,21 @@ startButton.addEventListener("click", function (event) {
   highScoreDiv.setAttribute("style", "display:none");
 });
 
+//after the time limit completed, screen will switch to the screen of "score and enter initials"
+//name initials and the score will be saved in an array "storedlist". The data will be sorted based on high to low score values.
+//also the same data will be stored in local storage
+//after saving the User initials and score, reset the score to zero. And then change screen to high score section.
+//The high score section will have the buttons to "go back" to main screen and also a button to "reset the high score". Functions for these two buttons are in below sections.
+
 submitInitials.addEventListener("click", function (event) {
   event.preventDefault();
-  
+
   if (initialsTextEntry.value.length > 0) {
     var x = { Name: initialsTextEntry.value, marks: score };
     storedList.push(x);
-    storedList.sort(function(a,b){return b.marks - a.marks;});
+    storedList.sort(function (a, b) {
+      return b.marks - a.marks;
+    });
     localStorage.setItem("storedList", JSON.stringify(storedList));
     createList();
     initialsTextEntry.value = "";
@@ -66,6 +84,10 @@ submitInitials.addEventListener("click", function (event) {
   highScoreDiv.setAttribute("style", "display:flex");
 });
 
+//"createList" function is using for displaying the high score entries as an ordered list
+// the function will retrieve the high score list data string  from local storage and parse to an array
+//the function then write each objects in the array to HTML as an ordered list
+
 function createList() {
   if (localStorage.getItem("storedList") != null) {
     var listArray = JSON.parse(localStorage.getItem("storedList"));
@@ -74,13 +96,17 @@ function createList() {
       initialsList.innerHTML = "";
       for (i = 0; i < listArray.length; i++) {
         var li1 = document.createElement("li");
-        li1.textContent = listArray[i].Name + "-" + listArray[i].marks;
-        li1.style="font-size: medium;background-color: rgba(85, 107, 47, 0.363);width: 195px;text-align: left; padding:5px; margin:5px"
+        li1.textContent = listArray[i].Name + "  :  " + listArray[i].marks;
+        li1.style =
+          "font-size: medium;background-color: rgba(85, 107, 47, 0.363);width: 195px;text-align: left; padding:5px; margin:5px";
         initialsList.appendChild(li1);
       }
     }
   }
 }
+
+//"go back" button in the high score screen will switch the screen to the start button the if the timer is not running
+//if the quiz is running , it will switch to the question section
 
 goBack.addEventListener("click", function () {
   if (start == true) {
@@ -89,14 +115,17 @@ goBack.addEventListener("click", function () {
     resultDiv.setAttribute("style", "display:none");
     highScoreDiv.setAttribute("style", "display:none");
   } else {
-    score=0;
-    index=0;
+    score = 0;
+    index = 0;
     questionDiv.setAttribute("style", "display:none");
     startDiv.setAttribute("style", "display:flex");
     resultDiv.setAttribute("style", "display:none");
     highScoreDiv.setAttribute("style", "display:none");
   }
 });
+// "view high score" button will switch the screen to the high score section.
+// this button also initiate the "createList" function, this will enable to create list of high score from local storage when the game is initialised/ open for first time.
+
 viewHighScore.addEventListener("click", function () {
   createList();
   questionDiv.setAttribute("style", "display:none");
@@ -104,12 +133,14 @@ viewHighScore.addEventListener("click", function () {
   resultDiv.setAttribute("style", "display:none");
   highScoreDiv.setAttribute("style", "display:flex");
 });
+
+//"clear high scores " button will clear the list of high scores from both HTML and also the local storage.
 clearList.addEventListener("click", function () {
   initialsList.innerHTML = "";
   storedList = [];
   localStorage.removeItem("storedList");
 });
-
+// set timer function will initialise a setinterval with 1sec time interval, when the variable "start" is true. When the start is false , the timer interval will clear.
 function setTimer() {
   if (start == true) {
     timer = setInterval(function () {
@@ -120,13 +151,20 @@ function setTimer() {
     time = 60;
   }
 }
+
+//"time increment" function is using as a countdown counter to show the remaining time of the quiz.
+//after the countdown reached zero, set the var start to false and stop the "set timer " function"
+//switch the screen to result screen, where it will show the final score.
+
 function timeincrement() {
   time = time - 1;
-  if(time<0){time=0};
+  if (time < 0) {
+    time = 0;
+  }
   timerIndication.innerHTML = "Time: " + time;
   startButton.innerHTML = "Quiz running";
   if (time <= 0) {
-    gameOverBeep()
+    gameOverBeep();
     start = false;
     clearInterval(timer);
     time = 60;
@@ -141,8 +179,11 @@ function timeincrement() {
   }
 }
 
+// "question  select" function is for choosing a random equation from the list of questions provided in an array of objects "question list"
+// after randomly selecting an object in "question list" , each named values of the object will be displayed in the question div.
+//the question list array also contains a value of the correct answer as "solution"
+
 function questionSelect() {
-  
   index = Math.floor(Math.random() * questionList.length);
   console.log(index);
   var question = questionList[index];
@@ -152,8 +193,11 @@ function questionSelect() {
   answerE2.innerHTML = question.ans2;
   answerE3.innerHTML = question.ans3;
   answerE4.innerHTML = question.ans4;
-
 }
+
+//when the user selected an answer it will be compared to the correct answer value provided in the corresponding object and determine it as correct or wrong.
+//an event listener is provided for each answer label in HTML.
+//Sound alert provided for correct and wrong selection
 
 function answerSelection() {
   if (start === true) {
@@ -167,8 +211,10 @@ function answerSelection() {
       } else {
         wrongAnsBeep();
         result.innerHTML = "Wrong!";
-        time = time-10;
-        if(time<0){time=0};
+        time = time - 10;
+        if (time < 0) {
+          time = 0;
+        }
         questionSelect();
       }
     });
@@ -183,8 +229,10 @@ function answerSelection() {
       } else {
         wrongAnsBeep();
         result.innerHTML = "Wrong!";
-        time = time-10;
-        if(time<0){time=0};
+        time = time - 10;
+        if (time < 0) {
+          time = 0;
+        }
         questionSelect();
       }
     });
@@ -199,8 +247,10 @@ function answerSelection() {
       } else {
         wrongAnsBeep();
         result.innerHTML = "Wrong!";
-        time = time-10;
-        if(time<0){time=0};
+        time = time - 10;
+        if (time < 0) {
+          time = 0;
+        }
         questionSelect();
       }
     });
@@ -215,8 +265,10 @@ function answerSelection() {
       } else {
         wrongAnsBeep();
         result.innerHTML = "Wrong!";
-        time = time-10;
-        if(time<0){time=0};
+        time = time - 10;
+        if (time < 0) {
+          time = 0;
+        }
         questionSelect();
       }
     });
@@ -224,22 +276,29 @@ function answerSelection() {
     return;
   }
 }
+
+//sound alert for correct answer
 function correctAnsBeep() {
-  var sound = new Audio('correct-answer.wav');
+  var sound = new Audio("./Assets/sounds/correct-answer.wav");
   sound.play();
 }
+//sound alert for wrong answer
 function wrongAnsBeep() {
-  var sound = new Audio('wrong-answer.wav');
+  var sound = new Audio("./Assets/sounds/wrong-answer.wav");
   sound.play();
 }
+//sound alert when the quiz completed
 function gameOverBeep() {
-  var sound = new Audio('game-over.wav');
+  var sound = new Audio("./Assets/sounds/game-over.wav");
   sound.play();
 }
+//sound alert when the quiz begin
 function gameStartBeep() {
-  var sound = new Audio('laser-swoosh.wav');
+  var sound = new Audio("./Assets/sounds/laser-swoosh.wav");
   sound.play();
 }
+//list of question presented
+//includes questiona and four answer choices. The correct answer is also provided as "solution", this will be used for determining the user entry is correct or wrong.
 var questionList = [
   {
     quest: "Commonly used data types do not include",
@@ -249,8 +308,8 @@ var questionList = [
     ans4: "digits",
     solution: "digits",
   },
-  
-   {
+
+  {
     quest: 'How do you write "Hello World" in an alertbox?',
     ans1: 'msgBox("Hello World)"',
     ans2: 'alert("Hellow World")',
@@ -299,7 +358,7 @@ var questionList = [
     ans4: "while(i=10)",
     solution: "while(i<=10)",
   },
-  
+
   {
     quest: "What does HTML stand for?",
     ans1: "Hyperlinks and Text Markup Language",
@@ -332,7 +391,7 @@ var questionList = [
     ans4: "//this is a comment",
     solution: "//this is a comment",
   },
-  
+
   {
     quest: "How do you round the number 7.25, to the nearest integer?",
     ans1: "round(7.25)",
