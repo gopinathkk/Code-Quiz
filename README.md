@@ -41,27 +41,27 @@ To install this code, download the zip file, or use GitHub's guidelines to clone
 
 
 ### This project has the following features: 
-    * A start buttons
-    * This will open a screen with multiple choice questions
-    * Quiz time will be 60 seconds
-    * User can choose the answers by clicking the labels
-    * If the answer is correct five points will be awarded 
-    * Ten seconds penalty is applicable for a wrong answer
+* A start buttons
+    - This will open a screen with multiple choice questions
+    - Quiz time will be 60 seconds
+    - User can choose the answers by clicking the labels
+    - If the answer is correct five points will be awarded 
+    - Ten seconds penalty is applicable for a wrong answer
 
     ![](Assets/images/questions.png)
 
-    * When the time period end, final score will be displayed
-    * There will be an option to record the score and user's initials
+    - When the time period end, final score will be displayed
+    - There will be an option to record the score and user's initials
 
     ![](Assets/images/score.png)
 
-    * The user scores can be viewed by "view high score" button
-    * High score lists can be deleted using "reset high score" button  
+    - The user scores can be viewed by "view high score" button
+    - High score lists can be deleted using "reset high score" button  
 
     ![](Assets/images/highscore.png)
 
-    * The high score entries will be saved in the local storage
-    * "Reset High Score" button will delete the saved list from local storage
+    - The high score entries will be saved in the local storage
+    - "Reset High Score" button will delete the saved list from local storage
 
     
 
